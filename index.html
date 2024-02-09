@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clustered Product Images</title>
+    <style>
+        .cluster {
+            margin-bottom: 2rem;
+        }
+        .cluster h2 {
+            margin: 0 0 1rem 0;
+            color: #333;
+        }
+        .cluster img {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clustered Product Images</h1>
+    <div id="clusters"></div>
+
+    <script>
+        fetch('clustered_image_data.json')
+        .then(response => response.json())
+        .then(data => {
+            const clustersContainer = document.getElementById('clusters');
+            Object.entries(data).forEach(([clusterLabel, imageUrls], index) => {
+                const clusterDiv = document.createElement('div');
+                clusterDiv.classList.add('cluster');
+
+                const header = document.createElement('h2');
+                header.innerText = `Cluster ${parseInt(clusterLabel) + 1}`;
+                clusterDiv.appendChild(header);
+
+                imageUrls.forEach(url => {
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = `Clustered Image ${index}`;
+                    clusterDiv.appendChild(img);
+                });
+
+                clustersContainer.appendChild(clusterDiv);
+            });
+        })
+        .catch(error => console.error('Error loading clustered image data:', error));
+    </script>
+</body>
+</html>
