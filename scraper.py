@@ -2,7 +2,7 @@ import requests
 import json
 
 
-ACCESS_KEY = 'zjGz58PUnH-bOeH0-GVWKuMJVwhmFWCWWjYcNLl_Uiw'
+ACCESS_KEY = 'ACCESS KEY'
 
 URL = 'https://api.unsplash.com/search/photos'
 PARAMS = {
